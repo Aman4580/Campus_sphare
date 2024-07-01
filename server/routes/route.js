@@ -36,7 +36,7 @@ router.get('/getall', getAllExams);
 router.post('/', addExam);
 
 router.get('/getall', getAllEvents);
-router.post('/', createEvents);
+router.post('/api/v1/events', createEvents);
 
 router.get('/getall', getAllClasses);
 router.post('/', createClass);

@@ -25,22 +25,22 @@ const Attendance = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/v1/students/getall');
-      setStudents(response.data.students);
-      initializeAttendanceData(response.data.students);
+      // const response = await axios.get('http://localhost:4000/api/v1/students/getall');
+      // setStudents(response.data.students);
+      // initializeAttendanceData(response.data.students);
     } catch (error) {
       console.error('Error fetching students:', error);
     }
   };
 
-  const initializeAttendanceData = (students) => {
-    const initialAttendanceData = students.map((student) => ({
-      id: student.id,
-      name: student.name,
-      status: 'Present', // Default to 'Present'
-    }));
-    setAttendanceData(initialAttendanceData);
-  };
+  // const initializeAttendanceData = (students) => {
+  //   const initialAttendanceData = students.map((student) => ({
+  //     id: student.id,
+  //     name: student.name,
+  //     status: 'Present', // Default to 'Present'
+  //   }));
+  //   setAttendanceData(initialAttendanceData);
+  // };
 
   const handleStatusChange = (id, status) => {
     const updatedData = attendanceData.map((student) => {

@@ -1,7 +1,8 @@
 // EventCalendar.js
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
-import axios from 'axios';
+//import axios from 'axios';
+import { createEvents } from '../../service/operations/authAPI';
 import {
   EventCalendarContainer,
   Content,
@@ -20,27 +21,28 @@ const EventCalendar = () => {
   const [error, setError] = useState(null);
 
   // Function to fetch events from the backend
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/api/v1/events/getall');
-      setEvents(response.data.events || []);
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      setError('Error fetching events');
-    }
-  };
+  // const fetchEvents = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:4000/api/v1/events/getall');
+  //     setEvents(response.data.events || []);
+  //   } catch (error) {
+  //     console.error('Error fetching events:', error);
+  //     setError('Error fetching events');
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  // useEffect(() => {
+  //   fetchEvents();
+  // }, []);
 
   // Function to add a new event
   const addEvent = async (e) => {
+    console.log("crerate event run successfully");
     e.preventDefault();
+    
     try {
-      const response = await axios.post('http://localhost:4000/api/v1/events', {
-        event: newEvent,
-      });
+      const response = await createEvents({ event: newEvent });
+      console.log("crerate event run successfully",response);
       setEvents([...events, response.data.event]);
       setNewEvent('');
     } catch (error) {
@@ -48,10 +50,11 @@ const EventCalendar = () => {
       if (error.response && error.response.data && error.response.data.error) {
         setError(error.response.data.error);
       } else {
-        setError('Error adding event');
+        setError('Error adding event loosly');
       }
     }
   };
+  
 
   return (
     <EventCalendarContainer>

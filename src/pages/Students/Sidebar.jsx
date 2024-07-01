@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'; 
-import { BsGraphUp, BsPeople, BsPerson, BsFileText, BsBook, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsCalendarEvent, BsQuestionSquare } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { BsGraphUp, BsGraphDown, BsCalendar, BsGear, BsChatDots, BsFileText, BsBook } from 'react-icons/bs'; // Added BsFileText import
 
 const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: ${({ isOpen }) => (isOpen ? '250px' : '80px')};
-  width: 250px;
   height: 100%;
   background-color: #2c3e50; /* Dark blue background */
   color: white;
@@ -83,11 +82,12 @@ const Sidebar = () => {
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  }; 
+  };
+
   return (
-    <SidebarContainer style={{ width: isOpen ? '250px' : '80px' }}>
-        <SidebarHeader>
-        <Logo src={"../assets/bg1.png"} alt="Logo" />
+    <SidebarContainer isOpen={isOpen}>
+      <SidebarHeader>
+        <Logo src={require("../assets/bg1.png")} alt="Logo" /> {/* Adjusted logo import */}
       </SidebarHeader>
       <SidebarHeader>Student</SidebarHeader>
       <SidebarNav>
@@ -112,8 +112,8 @@ const Sidebar = () => {
           <StyledLink to="/student/attendance">Attendance</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem>
-        <SidebarIcon><BsBook /></SidebarIcon>
-          <StyledLink to="/student/library">Library </StyledLink>
+          <SidebarIcon><BsBook /></SidebarIcon>
+          <StyledLink to="/student/library">Library</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem>
           <SidebarIcon><BsChatDots /></SidebarIcon>
@@ -123,7 +123,6 @@ const Sidebar = () => {
           <SidebarIcon><BsGear /></SidebarIcon>
           <StyledLink to="/student/settings">Profile</StyledLink>
         </SidebarNavItem>
-        
       </SidebarNav>
       <ToggleButton onClick={toggleSidebar}>
         <ToggleIcon isOpen={isOpen}>▲</ToggleIcon>

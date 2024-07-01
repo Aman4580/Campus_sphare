@@ -25,12 +25,12 @@ const Assignments = () => {
   }, []);
 
   const fetchAssignments = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/api/v1/assignments/getall');
-      setAssignments(response.data.assignments);
-    } catch (error) {
-      console.error('Error fetching assignments:', error);
-    }
+    // try {
+    //   const response = await axios.get('http://localhost:4000/api/v1/assignments/getall');
+    //   setAssignments(response.data.assignments);
+    // } catch (error) {
+    //   console.error('Error fetching assignments:', error);
+    // }
   };
 
   const handleAddAssignment = async (e) => {

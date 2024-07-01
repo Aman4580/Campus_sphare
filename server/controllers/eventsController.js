@@ -1,22 +1,28 @@
 import {  Events } from "../models/eventsSchema.js";
-import { handleValidationError } from "../middlewares/errorHandler.js";
 
+
+// Backend (Node.js) - Assuming this is part of your router setup
 export const createEvents = async (req, res, next) => {
   console.log(req.body);
   const { events } = req.body;
+  console.log("events is this",events);
+  
   try {
-  if (!events ) {
-    return next("Please Fill Form!", 400);
-  }
-  await Events.create({ events });
-  res.status(200).json({
-    success: true,
-    message: "Event is Created!",
-  });    
-  }  catch (err) {
+    if (!events) {
+      return res.status(400).json({ success: false, error: "Please Fill Form!" });
+    }
+    // Assuming Events is your database model or schema
+    await Events.create({ events });
+    
+    return res.status(200).json({
+      success: true,
+      message: "Event Created Successfully!",
+    });
+  } catch (err) {
     next(err);
   }
 };
+
 
 export const getAllEvents = async (req, res, next) => {
   try {
