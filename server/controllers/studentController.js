@@ -1,5 +1,5 @@
 import { Student } from "../models/studentSchema.js";
-import { handleValidationError } from "../middlewares/errorHandler.js";
+
 
 export const createStudent = async (req, res, next) => {
   console.log(req.body);
