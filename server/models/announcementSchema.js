@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 
 const announcementSchema = new mongoose.Schema({
     announcement: {
-    type: String,
-    required: true
+    type: [String], // Define as an array of strings
+    required: true,
   },
 });
 

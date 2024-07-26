@@ -1,22 +1,23 @@
 import {Announcement} from "../models/announcementSchema.js";
-import { handleValidationError } from "../middlewares/errorHandler.js";
-
+// Create new announcements
 export const createAnnouncement = async (req, res, next) => {
-  console.log(req.body);
   const { announcement } = req.body;
   try {
-      if (!announcement ) {
-        handleValidationError("Please Fill Form!", 400);
-  }
-  await Announcement.create({ announcement});
-  res.status(200).json({
-    success: true,
-    message: "Announcement Created!",
-  });
+    if (!announcement) {
+      return res.status(400).json({ success: false, message: 'Please provide an announcement' });
+    }
+    // Create the announcement
+    const newAnnouncement = await Announcement.create({ announcement });
+    res.status(201).json({
+      success: true,
+      Announcement: newAnnouncement,
+    });
   } catch (err) {
-    next(err);
+    console.error('Error creating announcement:', err);
+    next(err); // Pass the error to the error handler
   }
 };
+
 
 export const getAllAnnouncements = async (req, res, next) => {
   try {

@@ -9,5 +9,9 @@ export const createEvents = async (events) => {
   console.log("Create events api run successfully  "  , endpoints.CREATE_EVENT_API);
     return apiConnector('POST', endpoints.CREATE_EVENT_API, {events});
 };
+export const createAnnouncement = async (announcement) => {
+  console.log("Create announcement api run successfully  "  , endpoints.CREATE_ANN_API);
+    return apiConnector('POST', endpoints.CREATE_ANN_API, {announcement});
+};
 
   

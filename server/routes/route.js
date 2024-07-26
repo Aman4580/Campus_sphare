@@ -48,6 +48,6 @@ router.post("/", createAssignment);
 router.get("/getall", getAllAssignments);
 
 router.get('/getall', getAllAnnouncements);
-router.post('/', createAnnouncement);
+router.post('/api/v1/announcement', createAnnouncement);
 
 export default router;
